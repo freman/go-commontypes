@@ -30,10 +30,10 @@ func (d *Duration) Unmarshal(s string) (err error) {
 	return
 }
 
-func (d *Duration) MarshalText() ([]byte, error) {
+func (d Duration) MarshalText() ([]byte, error) {
 	return []byte(d.Duration.String()), nil
 }
 
-func (d *Duration) MarshalJSON() ([]byte, error) {
+func (d Duration) MarshalJSON() ([]byte, error) {
 	return json.Marshal(d.Duration.String())
 }
