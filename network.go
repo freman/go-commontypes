@@ -5,9 +5,9 @@
 package commontypes
 
 import (
+	"encoding/json"
 	"net"
 	"strings"
-	"encoding/json"
 )
 
 type Network struct {
@@ -18,6 +18,10 @@ type Networks []Network
 
 func (n *Network) UnmarshalText(text []byte) error {
 	return n.Unmarshal(string(text))
+}
+
+func (n *Network) UnmarshalTOML(text []byte) error {
+	return n.Unmarshal(string(text[1 : len(text)-1]))
 }
 
 func (n *Network) UnmarshalJSON(data []byte) error {
