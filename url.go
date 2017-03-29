@@ -1,12 +1,12 @@
-// Copyright 2015 Shannon Wynter. All rights reserved.
+// Copyright 2017 Shannon Wynter. All rights reserved.
 // Use of this source code is governed by a MIT
 // license that can be found in the LICENSE file.
 
 package commontypes
 
 import (
-	"net/url"
 	"encoding/json"
+	"net/url"
 )
 
 type URL struct {
@@ -15,6 +15,10 @@ type URL struct {
 
 func (u *URL) UnmarshalText(text []byte) error {
 	return u.Unmarshal(string(text))
+}
+
+func (u *URL) UnmarshalTOML(text []byte) error {
+	return u.Unmarshal(string(text[1 : len(text)-1]))
 }
 
 func (u *URL) UnmarshalJSON(data []byte) error {
