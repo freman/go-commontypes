@@ -16,6 +16,23 @@ type Network struct {
 
 type Networks []Network
 
+// PrivateNetworks is a list of commonly defined private networks
+// most useful for figuring out if a private ip address has been provided
+var PrivateNetworks = Networks{
+	Network{&net.IPNet{IP: net.IP{0, 0, 0, 0}, Mask: net.IPMask{255, 0, 0, 0}}},
+	Network{&net.IPNet{IP: net.IP{10, 0, 0, 0}, Mask: net.IPMask{255, 0, 0, 0}}},
+	Network{&net.IPNet{IP: net.IP{100, 64, 0, 0}, Mask: net.IPMask{255, 192, 0, 0}}},
+	Network{&net.IPNet{IP: net.IP{127, 0, 0, 0}, Mask: net.IPMask{255, 0, 0, 0}}},
+	Network{&net.IPNet{IP: net.IP{172, 16, 0, 0}, Mask: net.IPMask{255, 240, 0, 0}}},
+	Network{&net.IPNet{IP: net.IP{192, 0, 0, 0}, Mask: net.IPMask{255, 255, 255, 0}}},
+	Network{&net.IPNet{IP: net.IP{192, 0, 2, 0}, Mask: net.IPMask{255, 255, 255, 0}}},
+	Network{&net.IPNet{IP: net.IP{192, 88, 99, 0}, Mask: net.IPMask{255, 255, 255, 0}}},
+	Network{&net.IPNet{IP: net.IP{192, 168, 0, 0}, Mask: net.IPMask{255, 255, 0, 0}}},
+	Network{&net.IPNet{IP: net.IP{198, 18, 0, 0}, Mask: net.IPMask{255, 254, 0, 0}}},
+	Network{&net.IPNet{IP: net.IP{198, 51, 100, 0}, Mask: net.IPMask{255, 255, 255, 0}}},
+	Network{&net.IPNet{IP: net.IP{203, 0, 113, 0}, Mask: net.IPMask{255, 255, 255, 0}}},
+}
+
 func (n *Network) UnmarshalText(text []byte) error {
 	return n.Unmarshal(string(text))
 }
