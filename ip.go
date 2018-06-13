@@ -13,6 +13,10 @@ type IP struct {
 	net.IP
 }
 
+func (i *IP) IsUnspecified() bool {
+	return i == nil || i.IP == nil || i.IP.IsUnspecified()
+}
+
 func (i *IP) UnmarshalText(text []byte) error {
 	return i.IP.UnmarshalText(text)
 }
